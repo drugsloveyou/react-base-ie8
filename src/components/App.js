@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Fetching data.json</h1>
+        <h1>Fetching data.jsssosn</h1>
         <pre><code>{ JSON.stringify(this.state, null, 2) }</code></pre>
         <InputBar />
       </div>

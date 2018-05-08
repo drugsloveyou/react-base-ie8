@@ -1,8 +1,19 @@
 {
   "presets": [
-    "es2015",
-    "react",
-    "stage-0"
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "ie >= 8"
+          ]
+        },
+        "useBuiltIns": true,
+        "debug": true
+      }
+    ],
+    "react"
   ],
   "env": {
     "development": {
@@ -11,8 +22,6 @@
   },
   "plugins": [
     "add-module-exports",
-    "transform-decorators-legacy",
-    "transform-es3-member-expression-literals",
-    "transform-es3-property-literals"
+    "transform-class-properties"
   ]
 }

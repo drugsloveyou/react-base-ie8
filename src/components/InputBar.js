@@ -11,8 +11,17 @@ export default class InputBar extends Component {
 
 
   render() {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(1)
+      }, 1000)
+    }).then((value) => {
+      console.log(value)
+    })
     return (
-      <input placeholder="JUST DO IT." type="text" onChange={ this.handleChange } />
+      <input placeholder="JUST DO IT."
+             type="text"
+             onChange={this.handleChange} />
     )
   }
 }
