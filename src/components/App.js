@@ -6,7 +6,9 @@ class App extends React.Component {
     message: "message"
   };
 
+
   render() {
+
     return (
       <div>
         <h1>Fetching data.jsssosn </h1>

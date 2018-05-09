@@ -14,13 +14,12 @@
   ],
   "env": {
     "development": {
-      "presets": [
-
-      ]
+      "presets": []
     }
   },
   "plugins": [
     "add-module-exports",
-    "transform-class-properties"
+    "transform-class-properties",
+    "syntax-async-generators"
   ]
 }

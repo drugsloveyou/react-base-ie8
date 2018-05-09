@@ -17,7 +17,7 @@ export default class InputBar extends Component {
         resolve(1);
       }, 1000);
     }).then(value => {
-      console.log(value);
+      console.log("promise test", value);
     });
 
     function* helloWorldGenerator() {
@@ -35,6 +35,19 @@ export default class InputBar extends Component {
       console.log(i, j, w);
     }, 1000);
 
+    async function test() {
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1);
+        }, 2000);
+      }).then(value => {
+        console.log("then", value);
+      });
+      console.log("await", 1, i);
+    }
+
+    let i =  test();
+    console.log('async await ret', i)
     return (
       <div>
         <input
