@@ -1,19 +1,21 @@
-import React from 'react';
-import InputBar from './InputBar'
+import React from "react";
+import InputBar from "./InputBar";
 
 class App extends React.Component {
   state = {
-    message: 'message'
-  }
+    message: "message"
+  };
 
   render() {
     return (
       <div>
-        <h1>Fetching data.jsssosn</h1>
-        <pre><code>{ JSON.stringify(this.state, null, 2) }</code></pre>
+        <h1>Fetching data.jsssosn </h1>
+        <pre>
+          <code>{JSON.stringify(this.state, null, 2)}</code>
+        </pre>
         <InputBar />
       </div>
-      );
+    );
   }
 }
 

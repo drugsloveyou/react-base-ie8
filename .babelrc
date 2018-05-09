@@ -4,10 +4,7 @@
       "env",
       {
         "targets": {
-          "browsers": [
-            "last 2 versions",
-            "ie >= 8"
-          ]
+          "browsers": ["last 2 versions", "ie >= 8"]
         },
         "useBuiltIns": true,
         "debug": true
@@ -17,7 +14,9 @@
   ],
   "env": {
     "development": {
-      "presets": []
+      "presets": [
+
+      ]
     }
   },
   "plugins": [
