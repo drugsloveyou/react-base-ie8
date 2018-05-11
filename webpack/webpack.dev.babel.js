@@ -11,7 +11,6 @@ const logger = require("../server/logger");
 
 module.exports = require("./webpack.base.babel")({
   entry: [
-    "babel-polyfill",
     "eventsource-polyfill", // IE热加载
     "webpack-hot-middleware/client?reload=true",
     path.join(process.cwd(), "src/app.js")
