@@ -2,29 +2,24 @@ import React from "react";
 import InputBar from "./InputBar";
 import Test from "./Test";
 
-// import {
-//   Router,
-//   Route,
-//   IndexRoute,
-//   IndexRedirect,
-//   browserHistory,
-//   hashHistory,
-//   useRouterHistory
-// } from "react-router";
+import {
+  Router,
+  Route,
+  IndexRoute,
+  IndexRedirect,
+  browserHistory,
+  hashHistory,
+  useRouterHistory
+} from "react-router";
 
-// import { createHashHistory } from "history";
+import { createHashHistory } from "history";
 
-// // const history = useRouterHistory(createHashHistory)({ queryKey: false });
 // const history = useRouterHistory(createHashHistory)({ queryKey: false });
+const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
-// import About from "./About";
-// import Inbox from "./Inbox";
-// <Router history={history}>
-//           <Route path="/" component={Test}>
-//             <Route path="about" component={About} />
-//             <Route path="inbox" component={Inbox} />
-//           </Route>
-//         </Router>
+import About from "./About";
+import Inbox from "./Inbox";
+
 let msg = `Fetching data.json`;
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +38,12 @@ class App extends React.Component {
           <code>{JSON.stringify(this.state, null, 2)}</code>
         </pre>
         <InputBar />
+        <Router history={history}>
+          <Route path="/" component={Test}>
+            <Route path="about" component={About} />
+            <Route path="inbox" component={Inbox} />
+          </Route>
+        </Router>
       </div>
     );
   }
