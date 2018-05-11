@@ -7,7 +7,7 @@
           "browsers": ["last 2 versions", "ie >= 8"]
         },
         "useBuiltIns": true,
-        "debug": true
+        "debug": false
       }
     ],
     "react"
