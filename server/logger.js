@@ -1,37 +1,42 @@
-/* eslint-disable no-console */
+const chalk = require("chalk"); //颜色插件
+const ip = require("ip"); //ip插件
+const openBrowser = require("react-dev-utils/openBrowser");
 
-const chalk = require('chalk');
-const ip = require('ip');
-
-const divider = chalk.gray('\n-----------------------------------');
+const divider = chalk.gray("\n-----------------------------------");
 
 /**
- * Logger middleware, you can customize it to make messages more personal
+ * 日志中间件
  */
 const logger = {
-
-  // Called whenever there's an error on the server we want to print
-  error: (err) => {
+  // 错误
+  error: err => {
     console.error(chalk.red(err));
   },
 
-  // Called when express.js app starts on given port w/o errors
+  // 使用express.js启动app
   appStarted: (port, host, tunnelStarted) => {
-    console.log(`Server started ! ${chalk.green('✓')}`);
+    console.log(`Server started ! ${chalk.green("✓")}`);
 
-    // If the tunnel started, log that and the URL it's available at
+    // 外网访问启动
     if (tunnelStarted) {
-      console.log(`Tunnel initialised ${chalk.green('✓')}`);
+      console.log(`Tunnel initialised ${chalk.green("✓")}`);
     }
 
+    //在浏览器中打开
+    openBrowser(`http://${host}:${port}`);
+    //提示
     console.log(`
-${chalk.bold('Access URLs:')}${divider}
+${chalk.bold("Access URLs:")}${divider}
 Localhost: ${chalk.magenta(`http://${host}:${port}`)}
+    
       LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-(tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
-${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
+        (tunnelStarted
+          ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}`
+          : "")}${divider}
+
+${chalk.blue(`Press ${chalk.italic("CTRL-C")} to stop`)}
     `);
-  },
+  }
 };
 
 module.exports = logger;

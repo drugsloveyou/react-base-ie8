@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-11 22:33:40
+ * @Last Modified time: 2018-05-14 15:33:28
  */
 
 const path = require("path");
@@ -19,35 +19,75 @@ module.exports = options => {
     ),
     mode: options.mode || process.env.NODE_ENV,
     module: {
-      rules: [
+      rules: (options.module ? options.module.rules : []).concat([
         {
-          test: /\.(js|jsx)$/, // Transform all .js files required somewhere with Babel
+          //babel转换
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loaders: ["babel-loader"]
+          use: {
+            loader: "babel-loader",
+            options: options.babelOptions
+          }
         },
         {
-          // Preprocess our own .css files
-          // This is the place to add your own loaders (e.g. sass/less etc.)
-          // for a list of loaders, see https://webpack.js.org/loaders/#styling
+          //处理自己的css文件
           test: /\.css$/,
           exclude: /node_modules/,
-          use: ["style-loader", "css-loader"]
+          use: [
+            "style-loader",
+            "css-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                autoprefixer:
+                  true ||
+                  {
+                    /*自己的配置*/
+                  }
+              }
+            }
+          ]
         },
         {
-          // Preprocess 3rd party .css files located in node_modules
+          //处理自己的scss/sass文件
+          test: /\.(scss|sass)$/,
+          exclude: /node_modules/,
+          use: [
+            "style-loader",
+            { loader: "css-loader", options: { importLoaders: 1 } },
+            "postcss-loader",
+            "sass-loader"
+          ]
+        },
+        {
+          //处理自己的less文件
+          test: /\.less$/,
+          exclude: /node_modules/,
+          use: [
+            "style-loader",
+            { loader: "css-loader", options: { importLoaders: 1 } },
+            "postcss-loader",
+            "less-loader"
+          ]
+        },
+        {
+          //编译处于node_modules中的css文件
           test: /\.css$/,
           include: /node_modules/,
           use: ["style-loader", "css-loader"]
         },
+        //字体文件解析
         {
           test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
           use: "file-loader"
         },
+        //图片解析
         {
           test: /\.(jpg|png|gif)$/,
           use: [
             "file-loader",
             {
+              //引用图片压缩插件
               loader: "image-webpack-loader",
               options: {
                 progressive: true,
@@ -58,17 +98,27 @@ module.exports = options => {
                   speed: 4
                 }
               }
+            },
+            {
+              loader: "url-loader",
+              options: {
+                // 指定限制
+                limit: 10000
+              }
             }
           ]
         },
+        //html解析
         {
           test: /\.html$/,
           use: "html-loader"
         },
+        //json文件解析
         {
           test: /\.json$/,
           use: "json-loader"
         },
+        //视频文件解析
         {
           test: /\.(mp4|webm)$/,
           use: {
@@ -78,19 +128,16 @@ module.exports = options => {
             }
           }
         }
-      ].concat(options.module ? options.module.rules : [])
+      ])
     },
     plugins: options.plugins.concat([
-      new webpack.ProvidePlugin({
-        fetch: "exports-loader?self.fetch!whatwg-fetch"
-      }),
       // 环境变量定义插件
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }
       })
-    ]),
+    ])
     // resolve: {
     //   modules: ["app", "node_modules"],
     //   extensions: [".js", ".jsx", ".react.js"],

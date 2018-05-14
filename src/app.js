@@ -1,29 +1,28 @@
-/**
- * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
+/*
+ * 入口文件
+ * @Author: xiezuobing(948466)[435321508@qq.com] 
+ * @Date: 2018-05-14 15:34:45 
+ * @Last Modified by: xiezuobing
+ * @Last Modified time: 2018-05-14 15:51:58
  */
 
-// Needed for redux-saga es6 generator support
 import "babel-polyfill";
 
-// Import all the third party stuff
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 
-const MOUNT_NODE = document.getElementById("app");
+const DOM = document.getElementById("app");
 const render = () => {
-  ReactDOM.render(<App />, MOUNT_NODE);
+  ReactDOM.render(<App />, DOM);
 };
 
 if (module.hot) {
-  // Hot reloadable React components and translation json files
-  // modules.hot.accept does not accept dynamic dependencies,
-  // have to be constants at compile-time
+  // NOTE: accept参数值不接受动态的依赖，babel的转移时不要对exports做解释；
+  // 需要禁用模块处理babel配置需要modules为false
+  // 否则热加载不生效；也就是说在编译的时候必须是常量
   module.hot.accept(["./components/App"], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    ReactDOM.unmountComponentAtNode(DOM);
     render();
   });
 }

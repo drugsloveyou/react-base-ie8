@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=development node server",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js"
+    "start:tunnel":
+      "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
+    "start:ie8": "cross-env NODE_ENV=production node server",
+    "build":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +39,7 @@
     "css-loader": "^0.28.11",
     "es3ify-loader": "^0.2.0",
     "eventsource-polyfill": "^0.9.6",
+    "exports-loader": "^0.7.0",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
@@ -42,9 +47,12 @@
     "image-webpack-loader": "^4.2.0",
     "ip": "^1.1.5",
     "json-loader": "^0.5.7",
+    "less-loader": "^4.1.0",
     "minimist": "^1.2.0",
     "ngrok": "^3.0.1",
+    "postcss-loader": "^2.1.5",
     "react-dev-utils": "^5.0.1",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",

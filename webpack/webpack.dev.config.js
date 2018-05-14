@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CircularDependencyPlugin = require("circular-dependency-plugin"); //检查循环引用插件
 const logger = require("../server/logger");
 
-module.exports = require("./webpack.base.babel")({
+module.exports = require("./webpack.base.config")({
   entry: [
     "eventsource-polyfill", // IE热加载
     "webpack-hot-middleware/client?reload=true",
@@ -22,7 +22,18 @@ module.exports = require("./webpack.base.babel")({
     chunkFilename: "[name].chunk.js",
     publicPath: "/"
   },
-
+  babelOptions: {
+    presets: [
+      [
+        "env",
+        {
+          modules: false
+        }
+      ],
+      "react",
+      "stage-0"
+    ],
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), //热加载插件
     new webpack.NoEmitOnErrorsPlugin(),

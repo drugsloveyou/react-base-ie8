@@ -19,6 +19,7 @@ const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import About from "./About";
 import Inbox from "./Inbox";
+import "../css/common.css"
 
 let msg = `Fetching data.json`;
 class App extends React.Component {
@@ -28,6 +29,8 @@ class App extends React.Component {
       message: "message"
     };
   }
+
+  state = {}
 
   render() {
     console.log("App render", this.state);
