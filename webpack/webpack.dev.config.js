@@ -22,18 +22,6 @@ module.exports = require("./webpack.base.config")({
     chunkFilename: "[name].chunk.js",
     publicPath: "/"
   },
-  babelOptions: {
-    presets: [
-      [
-        "env",
-        {
-          modules: false
-        }
-      ],
-      "react",
-      "stage-0"
-    ],
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), //热加载插件
     new webpack.NoEmitOnErrorsPlugin(),

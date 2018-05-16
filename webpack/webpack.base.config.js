@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-14 15:33:28
+ * @Last Modified time: 2018-05-16 15:41:51
  */
 
 const path = require("path");
@@ -24,10 +24,7 @@ module.exports = options => {
           //babel转换
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: options.babelOptions
-          }
+          loaders: ["babel-loader"]
         },
         {
           //处理自己的css文件
@@ -132,11 +129,11 @@ module.exports = options => {
     },
     plugins: options.plugins.concat([
       // 环境变量定义插件
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-        }
-      })
+      // new webpack.DefinePlugin({
+      //   "process.env": {
+      //     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      //   }
+      // })
     ])
     // resolve: {
     //   modules: ["app", "node_modules"],

@@ -1,0 +1,38 @@
+{
+  "presets": ["react"],
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "stage-0"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": ["last 2 versions", "ie >= 8"]
+            },
+            "useBuiltIns": true,
+            "debug": true
+          }
+        ]
+      ],
+      "plugins": [
+        "add-module-exports",
+        "transform-class-properties",
+        "syntax-async-generators",
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
+}

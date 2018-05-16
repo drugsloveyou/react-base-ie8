@@ -35,18 +35,16 @@ export default class InputBar extends Component {
       console.log(i, j, w);
     }, 1000);
 
+    let i = test();
     async function test() {
-      await new Promise((resolve, reject) => {
+      let value = await new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve(1);
         }, 2000);
-      }).then(value => {
-        console.log("then", value);
       });
-      console.log("await", 1, i);
+      console.log("await", 1, i, value);
     }
 
-    let i = test();
     console.log("asyncsss awsssaist ret", i);
     return (
       <div>

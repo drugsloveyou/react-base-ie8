@@ -17,32 +17,7 @@ module.exports = require("./webpack.base.config")({
     // 这里根据实际的上限规则配置
     publicPath: ""
   },
-  mode: "none",
-  babelOptions: {
-    presets: [
-      [
-        "env",
-        {
-          targets: {
-            browsers: ["last 2 versions", "ie >= 8"]
-          },
-          //开启采用则引入原则
-          useBuiltIns: true,
-          //debug模式
-          debug: false
-        }
-      ],
-      "react"
-    ],
-    plugins: [
-      "add-module-exports", //模块解析
-      "transform-class-properties", //类属性解析
-      "syntax-async-generators", //开启generators解析
-      "transform-react-remove-prop-types", //编译移除propTypes，毕竟只有在开发调试时才有用到
-      "transform-react-constant-elements", //html元素静态化
-      "transform-react-inline-elements" //将react的html部分转化为行内元素
-    ]
-  },
+  mode: "development",
   module: {
     rules: [
       {
@@ -51,6 +26,7 @@ module.exports = require("./webpack.base.config")({
         loaders: ["es3ify-loader"],
         include: [
           path.resolve(process.cwd(), "./src"),
+          path.resolve(process.cwd(), "./node_modules/axios"),
           path.resolve(process.cwd(), "./node_modules/babel-polyfill")
         ]
       }
@@ -61,7 +37,7 @@ module.exports = require("./webpack.base.config")({
     new webpack.optimize.SplitChunksPlugin(),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      //页面压缩相关配置
+      // 页面压缩相关配置
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -76,6 +52,7 @@ module.exports = require("./webpack.base.config")({
       },
       inject: true
     }),
+    // new UglifyJsPlugin({ uglifyOptions: { ie8: true } })
     // js代码压缩相关配置
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -84,7 +61,7 @@ module.exports = require("./webpack.base.config")({
           warnings: false
         },
         output: {
-          beautify: true,
+          // beautify: true,
           quote_keys: true
         },
         ie8: true

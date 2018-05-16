@@ -14,23 +14,18 @@ import {
 
 import { createHashHistory } from "history";
 
-// const history = useRouterHistory(createHashHistory)({ queryKey: false });
+// const history = useRouterHistory(createHashHistory)();//从3.0版本开始不需要传queryKey参数
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import About from "./About";
 import Inbox from "./Inbox";
-import "../css/common.css"
+import "../css/common.css";
 
 let msg = `Fetching data.json`;
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: "message"
-    };
-  }
-
-  state = {}
+  state = {
+    message: "messsage"
+  };
 
   render() {
     console.log("App render", this.state);
