@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-16 15:41:51
+ * @Last Modified time: 2018-05-17 17:53:16
  */
 
 const path = require("path");
@@ -127,6 +127,7 @@ module.exports = options => {
         }
       ])
     },
+    optimization: options.optimization,
     plugins: options.plugins.concat([
       // 环境变量定义插件
       // new webpack.DefinePlugin({
