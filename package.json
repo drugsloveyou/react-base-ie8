@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dll": "cross-env NODE_ENV=development webpack --config webpack/webpack.dll.config.js",
+    "dll":
+      "cross-env NODE_ENV=development webpack --config webpack/webpack.dll.config.js",
     "start": "cross-env NODE_ENV=development node server",
     "start:dll": "npm run dll && npm run start",
-    "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
-    "copy": "node ./cli/copy",
+    "start:tunnel":
+      "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:ie8": "cross-env NODE_ENV=production node server",
-    "build:copy": "npm run copy && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js"
+    "copy": "node ./cli/copy",
+    "build:copy":
+      "npm run copy && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js",
+    "build":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js"
   },
   "author": "",
   "license": "ISC",
