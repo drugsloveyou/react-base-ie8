@@ -3,11 +3,14 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-17 17:53:16
+ * @Last Modified time: 2018-05-17 19:58:33
  */
 
 const path = require("path");
 const webpack = require("webpack");
+const chalk = require("chalk");
+//进入条
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 module.exports = options => {
   return {
     entry: options.entry,
@@ -26,53 +29,7 @@ module.exports = options => {
           exclude: /node_modules/,
           loaders: ["babel-loader"]
         },
-        {
-          //处理自己的css文件
-          test: /\.css$/,
-          exclude: /node_modules/,
-          use: [
-            "style-loader",
-            "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                autoprefixer:
-                  true ||
-                  {
-                    /*自己的配置*/
-                  }
-              }
-            }
-          ]
-        },
-        {
-          //处理自己的scss/sass文件
-          test: /\.(scss|sass)$/,
-          exclude: /node_modules/,
-          use: [
-            "style-loader",
-            { loader: "css-loader", options: { importLoaders: 1 } },
-            "postcss-loader",
-            "sass-loader"
-          ]
-        },
-        {
-          //处理自己的less文件
-          test: /\.less$/,
-          exclude: /node_modules/,
-          use: [
-            "style-loader",
-            { loader: "css-loader", options: { importLoaders: 1 } },
-            "postcss-loader",
-            "less-loader"
-          ]
-        },
-        {
-          //编译处于node_modules中的css文件
-          test: /\.css$/,
-          include: /node_modules/,
-          use: ["style-loader", "css-loader"]
-        },
+        
         //字体文件解析
         {
           test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
@@ -82,7 +39,6 @@ module.exports = options => {
         {
           test: /\.(jpg|png|gif)$/,
           use: [
-            "file-loader",
             {
               //引用图片压缩插件
               loader: "image-webpack-loader",
@@ -97,6 +53,8 @@ module.exports = options => {
               }
             },
             {
+              // url-loader 当图片较小的时候会把图片BASE64编码，
+              // 大于limit参数的时候还是使用file-loader 进行拷贝
               loader: "url-loader",
               options: {
                 // 指定限制
@@ -130,15 +88,28 @@ module.exports = options => {
     optimization: options.optimization,
     plugins: options.plugins.concat([
       // 环境变量定义插件
-      // new webpack.DefinePlugin({
-      //   "process.env": {
-      //     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      //   }
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        }
+      }),
+      // 编译进度条
+      new ProgressBarPlugin({
+        format:
+          "  build [:bar] " +
+          chalk.green.bold(":percent") +
+          " (:elapsed seconds)"
+      })
+      //css打包成文件
+      // new MiniCssExtractPlugin({
+      //   filename: "[name].css",
+      //   chunkFilename: "[id].css"
       // })
     ])
     // resolve: {
     //   modules: ["app", "node_modules"],
     //   extensions: [".js", ".jsx", ".react.js"],
+    //   alias: {} //配置别名可以加快webpack查找模块的速度
     //   mainFields: ["browser", "jsnext:main", "main"]
     // },
     // devtool: options.devtool,
