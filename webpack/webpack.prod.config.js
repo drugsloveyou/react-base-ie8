@@ -15,11 +15,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 //css按需加载
 const PurifyCSSPlugin = require("purifycss-webpack");
-/**
- * 在babel配置下
- * "loose": true,
- * "modules": false
- */
 
 module.exports = require("./webpack.base.config")({
   entry: {

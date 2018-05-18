@@ -1,7 +1,5 @@
-// import "whatwg-fetch";
+// import "whatwg-fetch"; //不用兼容ie8时使用这个
 import "fetch-ie8"; //https://www.npmjs.com/package/fetch-ie8
-// const axios = window.axios;
-// import axios from "axios";
 function parseJSON(response) {
   if (response.status === 204 || response.status === 205) {
     return null;

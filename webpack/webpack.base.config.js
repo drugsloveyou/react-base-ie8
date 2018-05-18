@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-17 19:58:33
+ * @Last Modified time: 2018-05-18 17:06:18
  */
 
 const path = require("path");
@@ -29,7 +29,6 @@ module.exports = options => {
           exclude: /node_modules/,
           loaders: ["babel-loader"]
         },
-        
         //字体文件解析
         {
           test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
@@ -55,6 +54,7 @@ module.exports = options => {
             {
               // url-loader 当图片较小的时候会把图片BASE64编码，
               // 大于limit参数的时候还是使用file-loader 进行拷贝
+              // 当使用这个loader时，不需要再使用file-loader
               loader: "url-loader",
               options: {
                 // 指定限制
