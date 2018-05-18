@@ -5,22 +5,24 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
-    "dll": "cross-env NODE_ENV=development webpack --config webpack/webpack.dll.config.js",
+    "dll":
+      "cross-env NODE_ENV=development webpack --config webpack/webpack.dll.config.js",
     "start": "cross-env NODE_ENV=development node server",
     "start:dll": "npm run dll && npm run start",
-    "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
+    "start:tunnel":
+      "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:ie8": "cross-env NODE_ENV=production node server",
     "copy": "node ./cli/copy",
-    "build:copy": "npm run copy && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js"
+    "build:copy":
+      "npm run copy && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js",
+    "build":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.config.js",
+    "prod": "npm run test && npm run build"
   },
   "author": "",
   "license": "ISC",
   "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ]
+    "moduleDirectories": ["node_modules", "src"]
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

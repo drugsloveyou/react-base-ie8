@@ -25,6 +25,12 @@ npm run start:ie8
 npm run copy 
 npm run build:copy
 
-发布构建代码
+运行测试用例
+npm run test
+
+构建代码
 npm run build
+
+生产环境打包代码
+npm run prod
 ```
