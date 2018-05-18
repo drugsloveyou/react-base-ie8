@@ -5,7 +5,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com]
  * @Date: 2018-05-17 19:56:17
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-17 20:06:51
+ * @Last Modified time: 2018-05-18 13:38:06
  */
 const path = require("path");
 const webpack = require("webpack");
@@ -18,15 +18,15 @@ module.exports = {
     vendor: ["jquery", "lodash", "axios"]
   },
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.resolve(process.cwd(), "build"),
     filename: "[name].dll.js",
-    library: "_dll_[name]" // 全局变量名，其他模块会从此变量上获取里面模块
+    library: "dll_[name]" // 全局变量名，其他模块会从此变量上获取里面模块
   },
   // manifest是描述文件
   plugins: [
     new webpack.DllPlugin({
-      name: "_dll_[name]",
-      path: path.join(__dirname, "dist", "manifest.json")
+      name: "dll_[name]",
+      path: path.resolve(process.cwd(), "build/manifest.json")
     })
   ]
 };

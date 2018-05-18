@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-14 15:34:45 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-14 15:51:58
+ * @Last Modified time: 2018-05-17 20:55:48
  */
 
 import "babel-polyfill";
@@ -18,9 +18,12 @@ const render = () => {
 };
 
 if (module.hot) {
-  // NOTE: accept参数值不接受动态的依赖，babel的转移时不要对exports做解释；
+  // NOTE: accept参数值不接受动态的依赖，
+  // ES6的模块引入是静态分析的,
+  // 故而可以在编译时正确判断到底加载了什么代码，
+  // babel的转移时不要对exports做转换需要保留；
   // 需要禁用模块处理babel配置需要modules为false
-  // 否则热加载不生效；也就是说在编译的时候必须是常量
+  // 否则热加载不生效；
   module.hot.accept(["./components/App"], () => {
     ReactDOM.unmountComponentAtNode(DOM);
     render();

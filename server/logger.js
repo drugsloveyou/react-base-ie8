@@ -16,14 +16,14 @@ const logger = {
   // 使用express.js启动app
   appStarted: (port, host, tunnelStarted) => {
     console.log(`Server started ! ${chalk.green("✓")}`);
-
+    
     // 外网访问启动
     if (tunnelStarted) {
       console.log(`Tunnel initialised ${chalk.green("✓")}`);
     }
 
     //在浏览器中打开
-    openBrowser(`http://${host}:${port}`);
+    // openBrowser(`http://${host}:${port}`);
     //提示
     console.log(`
 ${chalk.bold("Access URLs:")}${divider}

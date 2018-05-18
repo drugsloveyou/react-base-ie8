@@ -115,8 +115,8 @@ module.exports = require("./webpack.base.config")({
           chunks: "initial",
           name: "common",
           minChunks: 2,
-          maxInitialRequests: 5, // The default limit is too small to showcase the effect
-          minSize: 0 // This is example is too small to create commons chunks
+          maxInitialRequests: 5, // 
+          minSize: 0 // 
         }
       }
     },
@@ -133,7 +133,7 @@ module.exports = require("./webpack.base.config")({
           compress: {
             properties: false, //属性
             warnings: false, // 在UglifyJs删除没有用到的代码时不输出警告
-            drop_console: true, // 删除所有的 `console` 语句，可以兼容ie浏览器
+            // drop_console: true, // 删除所有的 `console` 语句，可以兼容ie浏览器
             collapse_vars: true, // 内嵌定义了但是只用到一次的变量
             reduce_vars: true // 提取出出现多次但是没有定义成变量去引用的静态值
           },

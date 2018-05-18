@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import http from "../http";
 const API = {
   COURSES_SELECTION:
-    "https://www.easy-mock.com/mock/5af58399b758743d3788f8bb/courses_selection/",
-  COURSES: "https://www.easy-mock.com/mock/5af58399b758743d3788f8bb/courses/"
+    "/mock/5af58399b758743d3788f8bb/courses_selection/",
+  COURSES: "/mock/5af58399b758743d3788f8bb/courses/",
+  JSON: "/json",
+  JSON1: "/json1"
 };
 export default class About extends Component {
   constructor() {
@@ -12,10 +14,22 @@ export default class About extends Component {
   }
 
   async getData() {
-    let data = await http(API.COURSES);
-    console.log(`
+    // let data = await http(API.COURSES);
+    // console.log(
+    //   `
+    // -------------------------------------
+    // `,
+    //   data
+    // );
+    http(API.COURSES).then(data => {
+      console.log(
+        `
     -------------------------------------
-    `,data);
+    `,
+        data,
+        JSON.stringify(data)
+      );
+    });
   }
 
   render() {

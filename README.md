@@ -21,8 +21,9 @@ npm run start:tunnel
 启动在ie8上运行的服务器
 npm run start:ie8
 
-一下命令可能会被取消
+以下命令可能会被取消
 npm run copy 
+npm run build:copy
 
 发布构建代码
 npm run build

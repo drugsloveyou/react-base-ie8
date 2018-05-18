@@ -1,12 +1,13 @@
 // import "whatwg-fetch";
-// import "fetch-ie8";
+import "fetch-ie8"; //https://www.npmjs.com/package/fetch-ie8
 // const axios = window.axios;
-import axios from "axios";
+// import axios from "axios";
 function parseJSON(response) {
   if (response.status === 204 || response.status === 205) {
     return null;
   }
-  return response.data;
+  // return response.data; //axios
+  return response.json(); //fetch
 }
 
 function checkStatus(response) {
@@ -19,8 +20,14 @@ function checkStatus(response) {
   throw error;
 }
 
+// export default function request(url, options) {
+//   return axios(url, options)
+//     .then(checkStatus)
+//     .then(parseJSON);
+// }
+
 export default function request(url, options) {
-  return axios(url, options)
+  return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON);
 }

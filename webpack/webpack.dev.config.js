@@ -86,7 +86,6 @@ module.exports = require("./webpack.base.config")({
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), //热加载插件
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true, //js包自动注入html
@@ -102,7 +101,8 @@ module.exports = require("./webpack.base.config")({
       exclude: /a\.js|node_modules/,
       failOnError: false //如果有则显示警告即可
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin(), //热加载插件
+    new webpack.NamedModulesPlugin() //热加载相关插件
   ],
   // 引入source-map更利于调试
   // 查看 https://webpack.js.org/configuration/devtool/#devtool
