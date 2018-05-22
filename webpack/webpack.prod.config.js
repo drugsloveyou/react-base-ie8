@@ -94,7 +94,7 @@ module.exports = require("./webpack.base.config")({
         loaders: ["es3ify-loader"],
         include: [
           path.resolve(process.cwd(), "./src"),
-          path.resolve(process.cwd(), "./node_modules/axios"),
+          // path.resolve(process.cwd(), "./node_modules/axios"),
           path.resolve(process.cwd(), "./node_modules/babel-polyfill")
         ]
       }
@@ -107,8 +107,8 @@ module.exports = require("./webpack.base.config")({
     splitChunks: {
       cacheGroups: {
         commons: {
-          chunks: "initial",
-          name: "common",
+          chunks: "initial", 
+          name: "common", 
           minChunks: 2,
           maxInitialRequests: 5, // 
           minSize: 0 // 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import InputBar from "./InputBar";
 import Test from "./Test";
 
@@ -19,16 +19,15 @@ const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import About from "./About";
 import Inbox from "./Inbox";
-import "../css/common.css";
 
 let msg = `Fetching data.json`;
-class App extends React.Component {
+class App extends Component {
   state = {
     message: "messsage"
   };
 
   render() {
-    console.log("App render", this.state);
+    // console.log("App render", this.state);
     return (
       <div>
         <h1>{msg}</h1>

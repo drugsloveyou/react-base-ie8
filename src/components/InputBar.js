@@ -1,3 +1,9 @@
+/**
+ * @Author: xiezuobing(948466)[435321508@qq.com] 
+ * @Date: 2018-05-22 18:48:49 
+ * @Last Modified by: xiezuobing
+ * @Last Modified time: 2018-05-22 18:49:55
+ */
 import React, { Component } from "react";
 // 这个插件最多兼容到ie9，不兼容ie8
 // import { autobind } from "core-decorators";
@@ -10,7 +16,7 @@ export default class InputBar extends Component {
     console.log(this);
     console.log(e.target.value);
   }
-
+  
   render() {
     new Promise((resolve, reject) => {
       setTimeout(() => {

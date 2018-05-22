@@ -3,7 +3,7 @@
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-14 15:34:45 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-17 20:55:48
+ * @Last Modified time: 2018-05-22 20:22:14
  */
 
 import "babel-polyfill";
@@ -11,6 +11,7 @@ import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import "./css/common.css";
 
 const DOM = document.getElementById("app");
 const render = () => {

@@ -1,8 +1,14 @@
+/**
+ * 服务器部分参考了react-boilerplate的服务配置
+ * @Author: xiezuobing(948466)[435321508@qq.com] 
+ * @Date: 2018-05-18 21:20:36 
+ * @Last Modified by: xiezuobing
+ * @Last Modified time: 2018-05-22 16:28:12
+ */
 const path = require("path");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
-
 const proxy = require("http-proxy-middleware"); //proxy
 
 function createWebpackMiddleware(compiler, publicPath) {
@@ -31,7 +37,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     target: "https://www.easy-mock.com/",
     changeOrigin: true
   }); //将请求转发
-  app.use("/*", apiProxy); //api子目录下的都是用代理
+  app.use("/*", apiProxy); //全目录下的都是用代理
   /****************/
 
   app.get("*", (req, res) => {
