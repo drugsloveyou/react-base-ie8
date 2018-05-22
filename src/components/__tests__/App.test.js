@@ -7,6 +7,7 @@ import App from "../App";
 
 //设置Enzyme适配器，不同版本的react不同的适配器哦~，
 // 【react的0.14.x】=> http://airbnb.io/enzyme/docs/installation/react-014.html
+// 【Enzyme文档】=> http://airbnb.io/enzyme/docs
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-14";
 Enzyme.configure({ adapter: new Adapter() });
