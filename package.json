@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "react-base-ie8",
   "version": "1.0.0",
-  "description": "",
+  "description": "this is react project.",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",

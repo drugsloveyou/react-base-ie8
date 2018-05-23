@@ -1,9 +1,12 @@
-/* 
+/** 
+ * webpack有个merge的函数可以合并配置项【可自行观看】
+ * https://webpack.js.org/guides/production/#setup
+ * 
  * webpack 配置基础文件
  * @Author: xiezuobing(948466)[435321508@qq.com] 
  * @Date: 2018-05-11 20:30:49 
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-18 17:06:18
+ * @Last Modified time: 2018-05-23 15:44:02
  */
 
 const path = require("path");
@@ -94,7 +97,7 @@ module.exports = options => {
         }
       }),
       // 编译进度条
-      new ProgressBarPlugin({
+      new ProgressBarPlugin({ 
         format:
           "  build [:bar] " +
           chalk.green.bold(":percent") +
@@ -105,15 +108,15 @@ module.exports = options => {
       //   filename: "[name].css",
       //   chunkFilename: "[id].css"
       // })
-    ])
+    ]),
+    devtool: options.devtool, //是否生成与如何生成source-map
+    performance: options.performance || {} //性能提示
     // resolve: {
     //   modules: ["app", "node_modules"],
     //   extensions: [".js", ".jsx", ".react.js"],
     //   alias: {} //配置别名可以加快webpack查找模块的速度
     //   mainFields: ["browser", "jsnext:main", "main"]
     // },
-    // devtool: options.devtool,
     // target: "web", // Make web variables accessible to webpack, e.g. window
-    // performance: options.performance || {}
   };
 };

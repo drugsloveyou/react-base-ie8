@@ -7,7 +7,6 @@ const CleanWebpackPlugin = require("clean-webpack-plugin"); // 清空打包目�
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); //js代码压缩插件
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const WebpackParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -104,14 +103,15 @@ module.exports = require("./webpack.base.config")({
   // https://webpack.js.org/configuration/optimization/
   optimization: {
     //webpack4.x的最新优化配置项，用于提取公共代码
+    // https://webpack.docschina.org/plugins/split-chunks-plugin/
     splitChunks: {
       cacheGroups: {
         commons: {
-          chunks: "initial", 
-          name: "common", 
-          minChunks: 2,
-          maxInitialRequests: 5, // 
-          minSize: 0 // 
+          chunks: "initial",  //有三个值可能"initial"，"async"和"all"。配置时，优化只会选择初始块，按需块或所有块。
+          name: "common",  //名字
+          minChunks: 2, //分割前的代码最大块数
+          maxInitialRequests: 5, // entry(入口)的并行请求数
+          minSize: 30000 // 最小值
         }
       }
     },
@@ -128,11 +128,11 @@ module.exports = require("./webpack.base.config")({
           compress: {
             properties: false, //属性
             warnings: false, // 在UglifyJs删除没有用到的代码时不输出警告
-            // drop_console: true, // 删除所有的 `console` 语句，可以兼容ie浏览器
+            drop_console: true, // 删除所有的 `console` 语句，可以兼容ie浏览器（生产环境就没有log了）
             collapse_vars: true, // 内嵌定义了但是只用到一次的变量
             reduce_vars: true // 提取出出现多次但是没有定义成变量去引用的静态值
           },
-          ie8: true
+          ie8: true // 兼容ie8的精髓，简单且强大
         }
       })
       // 单入口使用（如果多入口使用和这个，编译后的js会有问题[真的坑]）
@@ -193,9 +193,9 @@ module.exports = require("./webpack.base.config")({
       dry: false
     })
   ],
-  devtool: false
-  // performance: {
-  //   assetFilter: assetFilename =>
-  //     !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)
-  // }
+  devtool: false,
+  performance: {
+    assetFilter: assetFilename =>
+      !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)
+  }
 });

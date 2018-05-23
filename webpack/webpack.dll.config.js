@@ -5,13 +5,15 @@
  * @Author: xiezuobing(948466)[435321508@qq.com]
  * @Date: 2018-05-17 19:56:17
  * @Last Modified by: xiezuobing
- * @Last Modified time: 2018-05-18 13:38:06
+ * @Last Modified time: 2018-05-23 15:40:09
  */
+
+// 比较完整的配置请参考（脚手架react-boilerplate）的dll相关配置
 const path = require("path");
 const webpack = require("webpack");
 /**
  * 尽量减小搜索范围
- * target: '_dll_[name]' 指定导出变量名字
+ * target: 'dll_[name]' 指定导出变量名字
  */
 module.exports = {
   entry: {
