@@ -11,8 +11,11 @@ import {
   hashHistory,
   useRouterHistory
 } from "react-router";
+import { Provider} from 'react-redux';
 
 import { createHashHistory } from "history";
+
+import store from '../store/store';
 
 // const history = useRouterHistory(createHashHistory)();//从3.0版本开始不需要传queryKey参数
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
@@ -44,12 +47,14 @@ class App extends Component {
           <code>{JSON.stringify(this.state, null, 2)}</code>
         </pre>
         <InputBar />
-        <Router history={history}>
-          <Route path="/" component={Test}>
-            <Route path="about" component={About} />
-            <Route path="inbox" getComponent={Inbox} />
-          </Route>
-        </Router>
+        <Provider store={ store }>
+          <Router history={history}>
+            <Route path="/" component={Test}>
+              <Route path="about" component={About} />
+              <Route path="inbox" getComponent={Inbox} />
+            </Route>
+          </Router>
+        </Provider>
       </div>
     );
   }
